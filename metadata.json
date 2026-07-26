@@ -1,8 +1,0 @@
-{
-  "name": "Subscription Tracker - For Cloudflare D1 / worker deployment.",
-  "description": "Een minimalistische tracker voor al uw maandelijkse vaste lasten, verzekeringen en hypotheken met een strak zwart-wit design.",
-  "requestFramePermissions": [],
-  "majorCapabilities": [
-    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
-  ]
-}
