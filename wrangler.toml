@@ -1,8 +1,0 @@
-name = "subscription-tracker"
-pages_build_output_dir = "dist"
-compatibility_date = "2024-03-20"
-
-[[d1_databases]]
-binding = "DB"
-database_name = "geldzaken"
-database_id = "0fc3ee5e-2825-408d-b523-ec8dc35521ef"
