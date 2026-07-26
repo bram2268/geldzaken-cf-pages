@@ -11,7 +11,7 @@ export const authMiddleware = async (c: any, next: () => Promise<void>) => {
   const sessionId = getCookie(c, 'session_id');
   if (!sessionId) return c.json({ error: 'Unauthorized' }, 401);
 
-  const session = await c.env.DB.prepare('SELECT user_id FROM sessions WHERE id = ? AND expires_at > datetime("now")').bind(sessionId).first();
+  const session = await c.env.DB.prepare(`SELECT user_id FROM sessions WHERE id = ? AND expires_at > datetime('now')`).bind(sessionId).first();
   if (!session) {
     deleteCookie(c, 'session_id');
     return c.json({ error: 'Unauthorized' }, 401);
@@ -40,7 +40,7 @@ authApi.post('/register', async (c) => {
 
   const sessionId = crypto.randomUUID();
   // 30 days expiry
-  await c.env.DB.prepare('INSERT INTO sessions (id, user_id, expires_at) VALUES (?, ?, datetime("now", "+30 days"))')
+  await c.env.DB.prepare(`INSERT INTO sessions (id, user_id, expires_at) VALUES (?, ?, datetime('now', '+30 days'))`)
     .bind(sessionId, userId)
     .run();
 
@@ -57,7 +57,7 @@ authApi.post('/login', async (c) => {
   }
 
   const sessionId = crypto.randomUUID();
-  await c.env.DB.prepare('INSERT INTO sessions (id, user_id, expires_at) VALUES (?, ?, datetime("now", "+30 days"))')
+  await c.env.DB.prepare(`INSERT INTO sessions (id, user_id, expires_at) VALUES (?, ?, datetime('now', '+30 days'))`)
     .bind(sessionId, user.id)
     .run();
 
